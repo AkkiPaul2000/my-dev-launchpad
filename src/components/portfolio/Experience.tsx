@@ -43,7 +43,7 @@ const jobs: Job[] = [
       "Built 120+ reusable React components for data-intensive analytical platforms.",
       "Reduced unnecessary re-renders with a five-member team, improving page speed by 20% and lowering bug density by 25%.",
       "Created 50+ custom data-fetching hooks and implemented Firebase Cloud Messaging with a 98% delivery rate.",
-      "Developed REST APIs with Java and Spring Boot to connect front-end products with secure databases.",
+      "Developed REST APIs with Java to connect front-end products with secure databases.",
     ],
   },
 ];
