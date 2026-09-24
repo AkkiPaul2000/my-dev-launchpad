@@ -1,9 +1,8 @@
 export function SectionTitle({ title, titleNo }: { title: string; titleNo: string }) {
   return (
-    <h2 className="flex items-center font-titleFont text-2xl font-semibold">
-      <span className="mr-2 text-base text-textGreen md:text-lg">{titleNo}.</span>
-      {title}
-      <span className="ml-6 hidden h-[.5vh] bg-gray-700 md:inline-flex md:w-60 lgl:w-72"></span>
-    </h2>
+    <div className="mb-8 grid grid-cols-[auto_minmax(0,1fr)] items-end gap-5 sm:mb-10">
+      <span className="font-mono text-xs font-semibold text-primary">/{titleNo}</span>
+      <h2 className="font-titleFont text-3xl font-semibold leading-none text-foreground sm:text-5xl">{title}</h2>
+    </div>
   );
 }

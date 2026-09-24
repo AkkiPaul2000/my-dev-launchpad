@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { ArrowUpRight, Github } from "lucide-react";
 
 import { SectionTitle } from "./SectionTitle";
 
@@ -6,7 +6,7 @@ type Project = {
   title: string;
   url: string;
   image: string;
-  description: ReactNode;
+  description: string;
   stack: string[];
   /** Text block on the left and screenshot on the right (the default is the reverse). */
   textFirst?: boolean;
@@ -19,26 +19,14 @@ const projects: Project[] = [
     title: "CryptoXplorers",
     url: "https://crypto-xplorers-port.vercel.app/",
     image: "/cryptoProject.png",
-    description: (
-      <>
-        An <span className="text-textGreen"> Crypto Analytic website</span> for the cryptic
-        investors to get a breif statiscal visual understanding about their preffered coin and other
-        coins in the market right now.
-      </>
-    ),
+    description: "A cryptocurrency analytics experience that helps investors explore market data and understand the statistical profile of preferred coins.",
     stack: ["JavaScript", "React", "Material UI", "ChartJS", "Vercel"],
   },
   {
     title: "BookStore",
     url: "https://book-store-tawny.vercel.app/",
     image: "/BookStore.PNG",
-    description: (
-      <>
-        An <span className="text-textGreen"> Store Website</span> where any seller can update their
-        items into our database to display their items with breif description and quantity for their
-        customer.
-      </>
-    ),
+    description: "A seller-managed storefront for publishing books with clear descriptions, inventory quantities, and customer-facing product details.",
     stack: ["Next JS", "TailWind CSS", "FireStore"],
     textFirst: true,
     imageLinkClassName: "mt-[30px]",
@@ -47,78 +35,33 @@ const projects: Project[] = [
     title: "Pokedex",
     url: "https://pokedex-ten-blond.vercel.app/pokemon/1",
     image: "/Pokedex.PNG",
-    description: (
-      <>
-        A <span className="text-textGreen"> Poket monster analytical website</span> to get a breif
-        description and their stats to compare it with other monsters as well.
-        <span style={{ color: "red", display: "inline-block", width: "100%" }}>
-          The website is heavy asset loaded so on deployment it might crash on loading details
-          Follow{" "}
-          <a
-            href="https://github.com/AkkiPaul2000/pokedex"
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: "blue" }}
-          >
-            HERE
-          </a>{" "}
-          to got to its github repo.
-        </span>
-      </>
-    ),
+    description: "A data-rich Pokédex for exploring individual Pokémon profiles and comparing their attributes and performance statistics.",
     stack: ["TypeScript", "SCSS", "Redux", "FireStore"],
     rowClassName: "items-center",
     imageLinkClassName: "mt-[20px]",
   },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
-  const image = (
-    <a
-      href={project.url}
-      target="_blank"
-      rel="noreferrer"
-      className={`group relative h-auto w-full xl:w-1/2 ${project.imageLinkClassName ?? ""}`}
-    >
-      <img
-        src={project.image}
-        alt={project.title}
-        className={`h-full w-full object-contain ${project.textFirst ? "mr-16" : ""}`}
-      />
-    </a>
-  );
-
-  const text = (
-    <div
-      className={`z-10 flex w-full flex-col gap-6 lgl:justify-between xl:w-1/2 ${
-        project.textFirst ? "items-start text-left" : "items-end text-right"
-      }`}
-    >
-      <p className="font-titleFont text-sm tracking-wide text-textGreen">Featured Project</p>
-      <h3 className="text-2xl font-bold">{project.title}</h3>
-      <p className="rounded-md bg-navy p-2 text-sm md:p-6 md:text-base">{project.description}</p>
-      <ul className="flex justify-between gap-2 font-titleFont text-xs tracking-wide text-textDark md:gap-5 md:text-sm">
-        {project.stack.map((tech) => (
-          <li key={tech}>{tech}</li>
-        ))}
-      </ul>
-    </div>
-  );
-
+function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
   return (
-    <div className={`flex flex-col gap-6 xl:flex-row ${project.rowClassName ?? ""}`}>
-      {project.textFirst ? (
-        <>
-          {text}
-          {image}
-        </>
-      ) : (
-        <>
-          {image}
-          {text}
-        </>
-      )}
-    </div>
+    <article className={`group overflow-hidden rounded-lg border border-border bg-card transition duration-300 hover:-translate-y-1 hover:border-primary/60 ${featured ? "md:col-span-2" : ""}`}>
+      <a href={project.url} target="_blank" rel="noreferrer" className={`block overflow-hidden border-b border-border ${featured ? "aspect-[16/8]" : "aspect-[16/10]"}`}>
+        <img src={project.image} alt={`${project.title} project interface`} className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]" />
+      </a>
+      <div className="p-5 sm:p-6">
+        <div className="flex items-start justify-between gap-4">
+          <div><p className="font-mono text-[11px] uppercase text-primary">Selected project</p><h3 className="mt-2 font-titleFont text-2xl font-semibold text-foreground">{project.title}</h3></div>
+          <a href={project.url} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`} className="grid size-10 shrink-0 place-items-center rounded-md border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"><ArrowUpRight size={18} /></a>
+        </div>
+        <p className="mt-4 text-sm leading-6 text-muted-foreground">{project.description}</p>
+        <ul className="mt-5 flex flex-wrap gap-2 font-mono text-[11px] text-muted-foreground">
+        {project.stack.map((tech) => (
+          <li key={tech} className="tech-chip">{tech}</li>
+        ))}
+        </ul>
+        {project.title === "Pokedex" && <a href="https://github.com/AkkiPaul2000/pokedex" target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary"><Github size={16} /> View source</a>}
+      </div>
+    </article>
   );
 }
 
@@ -126,12 +69,12 @@ export function Projects() {
   return (
     <section
       id="Projects"
-      className="mx-auto flex min-h-screen max-w-containerSmall flex-col gap-8 py-10 lgl:py-32"
+      className="section-shell"
     >
-      <SectionTitle title="What I have built" titleNo="03" />
-      <div className="mt-10 flex w-full flex-col items-center justify-center gap-28">
-        {projects.map((project) => (
-          <ProjectCard key={project.title} project={project} />
+      <SectionTitle title="Selected work" titleNo="03" />
+      <div className="grid gap-5 md:grid-cols-2">
+        {projects.map((project, index) => (
+          <ProjectCard key={project.title} project={project} featured={index === 0} />
         ))}
       </div>
     </section>

@@ -24,7 +24,7 @@ export function SocialLinks() {
     <>
       {socials.map(({ label, href, icon: Icon }) => (
         <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label}>
-          <span className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-hoverColor text-xl transition-all duration-300 hover:-translate-y-2 hover:text-textGreen">
+          <span className="inline-flex size-9 cursor-pointer items-center justify-center rounded-md border border-border bg-secondary text-base text-muted-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary hover:text-primary">
             <Icon />
           </span>
         </a>

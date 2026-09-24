@@ -1,25 +1,22 @@
 import { EMAIL } from "./social-links";
+import { ArrowUpRight, Mail } from "lucide-react";
 
 export function Contact() {
   return (
     <section
       id="Contact"
-      className="mx-auto flex min-h-screen max-w-container flex-col items-center justify-center gap-4 py-10 xl:py-32"
+      className="section-shell"
     >
-      <p className="flex items-center font-titleFont text-lg font-semibold tracking-wide text-textGreen">
-        04. What&apos;s Next?
-      </p>
-      <h2 className="font-titleFont text-5xl font-semibold">Get In Touch</h2>
-      <p className="max-w-[600px] text-center text-textDark">
-        Well,right now very much looking forward to any new oppotunities, I m excited and hoping to
-        get in touch with you soon.
-      </p>
-      <a
-        href={`mailto:${EMAIL}`}
-        className="mt-6 inline-flex h-14 w-40 items-center justify-center rounded-md border border-textGreen font-titleFont text-sm tracking-wider text-textGreen duration-300 hover:bg-hoverColor"
-      >
-        Say Hello
-      </a>
+      <div className="relative overflow-hidden rounded-lg border border-border bg-primary p-7 text-primary-foreground sm:p-12 lg:p-16">
+        <p className="font-mono text-xs font-semibold uppercase">/04 · Contact</p>
+        <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+          <div>
+            <h2 className="max-w-3xl font-titleFont text-4xl font-bold leading-none sm:text-6xl">Have a complex product to build?</h2>
+            <p className="mt-5 max-w-2xl text-base leading-7 opacity-80">I’m open to full-stack engineering opportunities where thoughtful architecture, reliable delivery, and a strong product experience matter.</p>
+          </div>
+          <a href={`mailto:${EMAIL}`} className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-background px-5 text-sm font-bold text-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><Mail size={17} /> Start a conversation <ArrowUpRight size={17} /></a>
+        </div>
+      </div>
     </section>
   );
 }
