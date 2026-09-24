@@ -6,10 +6,11 @@ import { Experience } from "@/components/portfolio/Experience";
 import { Footer } from "@/components/portfolio/Footer";
 import { Navbar } from "@/components/portfolio/Navbar";
 import { Projects } from "@/components/portfolio/Projects";
-import { SecAnimate } from "@/components/portfolio/SecAnimate";
+import { ScrollSection } from "@/components/portfolio/SecAnimate";
 
 const title = "Akash Paul — Full Stack Developer";
-const description = "Full Stack Developer with 4+ years of experience building scalable APIs, data systems, and responsive products with React, NestJS, Node.js, and cloud infrastructure.";
+const description =
+  "Full Stack Developer with 4+ years of experience building scalable APIs, data systems, and responsive products with React, NestJS, Node.js, and cloud infrastructure.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,13 +28,25 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="portfolio-scrollbar min-h-screen overflow-x-hidden bg-background font-bodyFont text-foreground">
+    // overflow-x-clip (not hidden): "hidden" would make <main> a scroll container and break
+    // the sticky navbar.
+    <main className="min-h-screen overflow-x-clip bg-background font-bodyFont text-foreground">
       <Navbar />
-      <Banner />
-      <SecAnimate><About /></SecAnimate>
-      <SecAnimate><Experience /></SecAnimate>
-      <SecAnimate><Projects /></SecAnimate>
-      <SecAnimate><Contact /></SecAnimate>
+      <ScrollSection first>
+        <Banner />
+      </ScrollSection>
+      <ScrollSection>
+        <About />
+      </ScrollSection>
+      <ScrollSection>
+        <Experience />
+      </ScrollSection>
+      <ScrollSection>
+        <Projects />
+      </ScrollSection>
+      <ScrollSection>
+        <Contact />
+      </ScrollSection>
       <Footer />
     </main>
   );

@@ -1,11 +1,22 @@
+import { publicUrl } from "@/lib/public-url";
+
 import { Reveal } from "./SecAnimate";
 import { SectionTitle } from "./SectionTitle";
 
 const skillGroups = [
-  { title: "Languages", skills: ["TypeScript", "JavaScript (ES6+)", "Python", "Java", "HTML / CSS"] },
-  { title: "Applications", skills: ["React", "Next.js", "Angular", "NestJS", "Node.js", "Material UI"] },
+  {
+    title: "Languages",
+    skills: ["TypeScript", "JavaScript (ES6+)", "Python", "Java", "HTML / CSS"],
+  },
+  {
+    title: "Applications",
+    skills: ["React", "Next.js", "Angular", "NestJS", "Node.js", "Material UI"],
+  },
   { title: "Data", skills: ["MongoDB", "MySQL", "Oracle", "NeonDB", "RocksDB"] },
-  { title: "Cloud & delivery", skills: ["AWS S3", "Docker", "Kubernetes", "Vercel", "GitHub Actions", "CI/CD", "Postman"] },
+  {
+    title: "Cloud & delivery",
+    skills: ["AWS S3", "Docker", "Kubernetes", "Vercel", "GitHub Actions", "CI/CD", "Postman"],
+  },
 ];
 
 export function About() {
@@ -16,7 +27,7 @@ export function About() {
         <Reveal className="md:col-span-5 lg:col-span-4">
           <div className="h-full overflow-hidden rounded-lg border border-border bg-card">
             <img
-              src="/profileImg.jpeg"
+              src={publicUrl("profileImg.jpeg")}
               alt="Akash Paul"
               className="h-56 w-full object-cover object-top grayscale transition duration-500 hover:grayscale-0 sm:h-72 md:h-full md:aspect-square md:object-center"
             />
@@ -28,18 +39,30 @@ export function About() {
               I turn complex product requirements into dependable systems people can use.
             </p>
             <div className="mt-5 space-y-4 text-sm leading-7 text-muted-foreground sm:text-base">
-              <p>Across enterprise SaaS, cryptocurrency platforms, and analytical products, I have designed secure REST APIs, optimized relational and NoSQL data layers, and shipped responsive user interfaces.</p>
-              <p>My approach combines clean architecture, SOLID principles, practical collaboration, and close attention to performance from concept through production.</p>
+              <p>
+                Across enterprise SaaS, cryptocurrency platforms, and analytical products, I have
+                designed secure REST APIs, optimized relational and NoSQL data layers, and shipped
+                responsive user interfaces.
+              </p>
+              <p>
+                My approach combines clean architecture, SOLID principles, practical collaboration,
+                and close attention to performance from concept through production.
+              </p>
             </div>
           </div>
         </Reveal>
       </div>
 
-      <div id="Skills" className="mt-4 grid scroll-mt-24 gap-4 sm:mt-5 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
+      <div
+        id="Skills"
+        className="mt-4 grid scroll-mt-16 gap-4 sm:mt-5 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4"
+      >
         {skillGroups.map((group, index) => (
           <Reveal key={group.title} delay={index * 0.07}>
             <article className="h-full rounded-lg border border-border bg-secondary p-5 transition-colors duration-300 hover:border-primary/60">
-              <h3 className="font-titleFont text-base font-semibold text-foreground">{group.title}</h3>
+              <h3 className="font-titleFont text-base font-semibold text-foreground">
+                {group.title}
+              </h3>
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                 {group.skills.map((skill) => (
                   <li key={skill} className="flex items-center gap-2">

@@ -146,19 +146,33 @@
     margin: 0;
   }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+  }
 
-  ::selection { background: var(--color-primary); color: var(--color-primary-foreground); }
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
 }
 
+/* One "page": each section fills the viewport below the navbar, content centered. */
 @utility section-shell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
+  min-height: calc(100svh - 4rem);
   max-width: var(--container-container);
   margin-inline: auto;
-  scroll-margin-top: 5rem;
-  padding: 5.5rem 1.25rem;
-  @media (min-width: 640px) { padding-inline: 2rem; }
-  @media (min-width: 1024px) { padding: 7.5rem 3rem; }
+  scroll-margin-top: 4rem;
+  padding: 4rem 1.25rem;
+  @media (min-width: 640px) {
+    padding-inline: 2rem;
+  }
+  @media (min-width: 1024px) {
+    padding: 5rem 3rem;
+  }
 }
 
 @utility tech-chip {
@@ -207,8 +221,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Replaces the tailwind-scrollbar plugin used by the original Next.js build. */
