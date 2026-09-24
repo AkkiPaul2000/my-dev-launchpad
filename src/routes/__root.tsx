@@ -80,7 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Akash Paul" },
       { name: "description", content: "Akash Paul — web developer portfolio." },
       { name: "author", content: "Akash Paul" },
-      { name: "theme-color", content: "#000080" },
+      { name: "theme-color", content: "#090a0c" },
       { property: "og:title", content: "Akash Paul" },
       { property: "og:description", content: "Akash Paul — web developer portfolio." },
       { property: "og:type", content: "website" },
@@ -96,7 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&family=Montserrat:wght@300;400;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap",
       },
     ],
   }),
