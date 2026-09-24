@@ -10,11 +10,12 @@
  * The @theme inline block maps CSS custom properties to Tailwind utility
  * classes (e.g. --color-primary -> bg-primary, text-primary).
  *
- * The :root and .dark blocks define the actual color values using oklch.
+ * The :root block defines the actual color values using oklch (the site is
+ * dark-only, so there is no separate .dark palette).
  * All colors MUST use oklch format.
  *
  * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 1. Add the variable to :root
  * 2. Register it in @theme inline as --color-<name>: var(--<name>)
  */
 
@@ -61,75 +62,77 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+/*
+ * Portfolio design tokens (ported from the original MyPortfolio tailwind.config.js).
+ * Utilities: bg-bodyColor, text-textGreen, text-textLight, text-textDark, bg-hoverColor,
+ * font-bodyFont, font-titleFont, shadow-navbarShadow, max-w-container / contentContainer /
+ * containerSmall / containerxs, and the xs / sml / mdl / lgl breakpoints.
+ */
+@theme {
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 375px;
+  --breakpoint-sml: 500px;
+  --breakpoint-md: 667px;
+  --breakpoint-mdl: 768px;
+  --breakpoint-lg: 960px;
+  --breakpoint-lgl: 1024px;
+  --breakpoint-xl: 1280px;
+
+  --container-container: 1440px;
+  --container-contentContainer: 1140px;
+  --container-containerSmall: 1024px;
+  --container-containerxs: 768px;
+
+  --font-bodyFont: "Montserrat", sans-serif;
+  --font-titleFont: "Inter", sans-serif;
+
+  --shadow-navbarShadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+
+  --color-bodyColor: oklch(0.214 0.048 257.951); /* #0A192F */
+  --color-textGreen: oklch(0.908 0.141 174.343); /* #64FFDA */
+  --color-textLight: oklch(0.879 0.046 271.713); /* #CCD6F6 */
+  --color-textDark: oklch(0.662 0.046 270.631); /* #8892B0 */
+  --color-hoverColor: oklch(0.908 0.141 174.343 / 10%); /* rgba(100,255,218,0.1) */
+  --color-navy: oklch(0.255 0.061 260.926); /* #112240 */
+  --color-gradientFrom: oklch(0.271 0.188 264.052); /* #000080 */
+  --color-gradientTo: oklch(0.613 0.212 256.33); /* #007FFF */
 }
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
+/* The site is dark-only, so the shadcn tokens map straight onto the portfolio palette. */
+:root {
+  --radius: 0.375rem;
+  --background: oklch(0.214 0.048 257.951);
+  --foreground: oklch(0.879 0.046 271.713);
+  --card: oklch(0.255 0.061 260.926);
+  --card-foreground: oklch(0.879 0.046 271.713);
+  --popover: oklch(0.255 0.061 260.926);
+  --popover-foreground: oklch(0.879 0.046 271.713);
+  --primary: oklch(0.908 0.141 174.343);
+  --primary-foreground: oklch(0.214 0.048 257.951);
+  --secondary: oklch(0.329 0.06 260.765);
+  --secondary-foreground: oklch(0.879 0.046 271.713);
+  --muted: oklch(0.255 0.061 260.926);
+  --muted-foreground: oklch(0.662 0.046 270.631);
+  --accent: oklch(0.908 0.141 174.343 / 10%);
+  --accent-foreground: oklch(0.908 0.141 174.343);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
+  --border: oklch(0.329 0.06 260.765);
+  --input: oklch(0.329 0.06 260.765);
+  --ring: oklch(0.908 0.141 174.343);
+  --chart-1: oklch(0.908 0.141 174.343);
+  --chart-2: oklch(0.613 0.212 256.33);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --sidebar: oklch(0.255 0.061 260.926);
+  --sidebar-foreground: oklch(0.879 0.046 271.713);
+  --sidebar-primary: oklch(0.908 0.141 174.343);
+  --sidebar-primary-foreground: oklch(0.214 0.048 257.951);
+  --sidebar-accent: oklch(0.329 0.06 260.765);
+  --sidebar-accent-foreground: oklch(0.879 0.046 271.713);
+  --sidebar-border: oklch(0.329 0.06 260.765);
+  --sidebar-ring: oklch(0.908 0.141 174.343);
 }
 
 @layer base {
@@ -140,5 +143,20 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+}
+
+/* Replaces the tailwind-scrollbar plugin used by the original Next.js build. */
+@utility portfolio-scrollbar {
+  scrollbar-color: var(--color-textDark) oklch(0.662 0.046 270.631 / 60%);
+
+  &::-webkit-scrollbar {
+    width: 16px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-textDark);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: oklch(0.662 0.046 270.631 / 60%);
   }
 }
