@@ -13,7 +13,7 @@ const fadeUp = (delay: number) => ({
 
 export function Banner() {
   return (
-    <section id="Home" className="mx-auto grid min-h-[calc(100svh-4rem)] max-w-container content-center gap-5 px-5 py-12 sm:px-8 lg:grid-cols-12 lg:px-12 lg:py-16">
+    <section id="Home" className="mx-auto grid max-w-container content-center gap-5 px-5 py-12 sm:px-8 lg:min-h-[720px] lg:grid-cols-12 lg:px-12 lg:py-16">
       <motion.div {...fadeUp(0.04)} className="relative overflow-hidden rounded-lg border border-border bg-card p-6 sm:p-9 lg:col-span-8 lg:p-12">
         <div className="mb-10 flex items-center gap-2 text-xs font-semibold uppercase text-primary">
           <span className="status-dot" /> Available for focused opportunities
@@ -25,11 +25,11 @@ export function Banner() {
         <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
           I engineer scalable back-end systems and responsive front-end products with TypeScript, React, NestJS, Node.js, and modern cloud infrastructure.
         </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <button type="button" onClick={() => scrollToSection("#Projects")} className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+        <div className="mt-8 flex flex-col gap-3 mdl:flex-row">
+          <button type="button" onClick={() => scrollToSection("#Projects")} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             View selected work <ArrowDownRight size={17} />
           </button>
-          <a href={resumeAsset.url} target="_blank" rel="noreferrer" className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-border bg-secondary px-5 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <a href={resumeAsset.url} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-border bg-secondary px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <FileText size={17} /> Open résumé
           </a>
         </div>
