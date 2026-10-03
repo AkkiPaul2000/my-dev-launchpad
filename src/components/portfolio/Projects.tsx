@@ -283,7 +283,7 @@ const projects: Project[] = [
   {
     title: "Pokedex",
     tagline: "A handheld Pokédex, rebuilt for the browser",
-    liveUrl: "https://pokedex-ten-blond.vercel.app/pokemon/1",
+    liveUrl: "https://akkipaul2000.github.io/pokedex/",
     repoUrl: "https://github.com/AkkiPaul2000/pokedex",
     image: { src: "pokedex.jpg", width: 1600, height: 867 },
     description:
@@ -307,7 +307,7 @@ const projects: Project[] = [
   {
     title: "CryptoXplorers",
     tagline: "Real-time crypto market intelligence",
-    liveUrl: "https://crypto-xplorers-port.vercel.app/",
+    liveUrl: "https://akkipaul2000.github.io/cryptoXplorers-port",
     repoUrl: "https://github.com/AkkiPaul2000/cryptoXplorers-port",
     image: { src: "cryptoxplorers.jpg", width: 1600, height: 875 },
     description:
