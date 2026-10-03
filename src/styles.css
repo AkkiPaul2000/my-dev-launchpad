@@ -360,17 +360,12 @@
   transition: background-position 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Reduced motion drops the big, scroll-driven movement (section transitions, parallax, entrances; see
+   SecAnimate and Projects). Windows reports it whenever its animation effects are off, so the slow
+   ambient loops and hover transitions keep running instead of freezing. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    /* Infinite loops would otherwise flicker through every frame at that speed. */
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }
 

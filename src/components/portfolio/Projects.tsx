@@ -401,7 +401,8 @@ function Showcase({ project, index }: { project: Project; index: number }) {
     const box = event.currentTarget.getBoundingClientRect();
     spotX.set(event.clientX - box.left);
     spotY.set(event.clientY - box.top);
-    if (still || event.pointerType !== "mouse") return;
+    // Tilt stays under reduced motion: it only moves while the pointer does.
+    if (event.pointerType !== "mouse") return;
     pointerX.set((event.clientX - box.left) / box.width - 0.5);
     pointerY.set((event.clientY - box.top) / box.height - 0.5);
   };
