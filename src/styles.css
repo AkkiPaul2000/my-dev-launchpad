@@ -96,6 +96,76 @@
   --color-navy: oklch(0.19 0.008 270);
   --color-gradientFrom: oklch(0.271 0.188 264.052); /* #000080 */
   --color-gradientTo: oklch(0.613 0.212 256.33); /* #007FFF */
+
+  /* Project showcase motion: animate-float, animate-drift, animate-rise, animate-wobble. */
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-drift: drift 22s ease-in-out infinite alternate;
+  --animate-rise: rise 9s linear infinite;
+  --animate-wobble: wobble 5s ease-in-out infinite;
+  --animate-beam: beam 8s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(-1deg);
+    }
+    50% {
+      transform: translate3d(0, -12px, 0) rotate(1.5deg);
+    }
+  }
+  @keyframes drift {
+    from {
+      transform: translate3d(-8%, -6%, 0) scale(1);
+    }
+    to {
+      transform: translate3d(8%, 6%, 0) scale(1.18);
+    }
+  }
+  @keyframes rise {
+    0% {
+      transform: translate3d(0, 0, 0);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate3d(0, -160px, 0);
+      opacity: 0;
+    }
+  }
+  /* A Poké Ball rocking after a throw, then resting. */
+  @keyframes wobble {
+    0%,
+    55%,
+    100% {
+      rotate: 0deg;
+    }
+    62% {
+      rotate: -16deg;
+    }
+    69% {
+      rotate: 13deg;
+    }
+    76% {
+      rotate: -8deg;
+    }
+    83% {
+      rotate: 4deg;
+    }
+  }
+  @keyframes beam {
+    to {
+      --beam-angle: 360deg;
+    }
+  }
+}
+
+/* Registered so the border beam's conic gradient can rotate smoothly. */
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
 /* The site is dark-only, so the shadcn tokens map straight onto the portfolio palette. */
@@ -220,6 +290,76 @@
   box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-primary) 18%, transparent);
 }
 
+/*
+ * Project showcase (Projects.tsx). Each card sets --brand / --brand-2 to its project's own colours;
+ * these utilities pick them up.
+ */
+
+/* Frosted chip floating over a project screenshot. */
+@utility glass-chip {
+  border: 1px solid oklch(1 0 0 / 10%);
+  border-radius: 0.875rem;
+  background: oklch(0.2 0.01 270 / 62%);
+  box-shadow:
+    0 24px 48px -20px oklch(0 0 0 / 75%),
+    inset 0 1px 0 oklch(1 0 0 / 8%);
+  backdrop-filter: blur(14px) saturate(150%);
+}
+
+/* A light travelling around the parent's border. */
+@utility border-beam {
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0 72%,
+    var(--brand) 86%,
+    transparent
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  animation: var(--animate-beam);
+}
+
+/* Dotted field that fades out towards the card edges. */
+@utility showcase-grid {
+  background-image: radial-gradient(oklch(1 0 0 / 7%) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 75%);
+}
+
+/* Soft drifting glow; --orb picks the colour (defaults to --brand). */
+@utility showcase-orb {
+  position: absolute;
+  border-radius: 999px;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--orb, var(--brand)) 26%, transparent),
+    transparent
+  );
+  animation: var(--animate-drift);
+}
+
+/* Title whose band of --brand sweeps across when its card is hovered. */
+@utility showcase-title {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-foreground) 40%,
+    var(--brand) 50%,
+    var(--color-foreground) 60%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: background-position 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -228,6 +368,8 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    /* Infinite loops would otherwise flicker through every frame at that speed. */
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

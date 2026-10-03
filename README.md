@@ -41,8 +41,9 @@ src/styles.css              Tailwind theme: portfolio colors, fonts and breakpoi
 
 - **Experience**: edit the `jobs` array in `src/components/portfolio/Experience.tsx`.
 - **Projects**: edit the `projects` array in `src/components/portfolio/Projects.tsx` (the first
-  entry is shown as the featured project; each has a `liveUrl` and `repoUrl`), and put
-  screenshots in `public/`.
+  entry is shown as the featured project; each has a `liveUrl`, `repoUrl`, its app's `brand`
+  colours and the `chips` that float around its screenshot), and put screenshots in `public/`
+  as sRGB JPEGs about 1600px wide, with the entry's `width`/`height` matching the file.
 - **Skills**: edit `skillGroups` in `src/components/portfolio/About.tsx`.
 - **Social links and email**: edit `src/components/portfolio/social-links.tsx`.
 - **Resume**: replace `public/Resume.pdf`.
